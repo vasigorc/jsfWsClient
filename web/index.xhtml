@@ -1,0 +1,190 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+    <h:head>
+        <title>Movies Bill</title>
+        <link rel="shortcut icon" type="image/x-icon" href="#{request.contextPath}/resources/img/Cinema-Popcorn.ico"/>
+        <h:outputStylesheet library="css" name="bootstrap.css"/>
+        <h:outputStylesheet library="css" name="bootstrap.min.css"/>
+        <h:outputStylesheet library="css" name="grayscale.css"/>
+        <h:outputStylesheet library="css" name="addstyles.css"/>
+        <h:outputStylesheet library="font-awesome/css" name="font-awesome.css"/>
+        <h:outputStylesheet library="font-awesome/css" name="font-awesome.min.css"/>
+        <link href="http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css"/>
+        <link href="http://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css"/>
+    </h:head>
+
+    <h:body id="page-top">
+        <f:passThroughAttribute name="data-spy" value="scroll"/>
+        <f:passThroughAttribute name="data-target" value=".navbar-fixed-top"/>
+
+        <!--Navigation-->
+        <nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
+            <div class="container">
+                <div class="navbar-header">
+                    <h:button class="navbar-toggle">
+                        <f:passThroughAttribute name="type" value="button"/>
+                        <f:passThroughAttribute name="data-toggle" value="collapse"/>
+                        <f:passThroughAttribute name="data-target" value=".navbar-main-collapse"/>
+                        <i class="fa fa-bars"></i>
+                    </h:button>
+                    <h:outputLink styleClass="navbar-brand page-scroll" value="#page-top">
+                        <i class="glyphicon glyphicon-play-circle"></i><h:outputText styleClass="light" value="Movies Bill"/> Web Service
+                    </h:outputLink>
+                </div>
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse navbar-right navbar-main-collapse">
+                    <ul class="nav navbar-nav">
+                        <!-- Hidden li included to remove active class from about link when scrolled up past about section -->
+                        <li class="hidden">
+                            <a href="#page-top"></a>
+                        </li>
+                        <li>
+                            <a class="page-scroll" href="#about">The Service</a>
+                        </li>
+                        <li>
+                            <a class="page-scroll" href="#download">Download</a>
+                        </li>
+                        <li>
+                            <a class="page-scroll" href="#contact">Contact coder</a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- /.navbar-collapse -->
+            </div>
+            <!--./container-->
+        </nav>
+
+        <!-- Intro Header -->
+        <header class="intro" style="background: url(resources/img/intro-bg1.jpg) no-repeat bottom center scroll; background-color: #000;">
+            <div class="intro-body">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-8 col-md-offset-2">
+                            <h1 class="brand-heading">Movie Bill</h1>
+                            <p class="intro-text">Discover new movies &amp;<br>and where your favorite actors played</br></p>
+                            <h:outputLink value="#about" styleClass="btn btn-circle page-scroll"><i class="fa fa-angle-double-down animated"></i></h:outputLink>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!--About section-->
+        <section id="about" class="container content-section1 text-center">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2">
+                    <h2>Select Movie</h2>
+                    <h:form>
+                        <p>
+
+                        </p>
+                        <p>
+                            <h:selectOneMenu id="usrSelection" style="width: 18em;" styleClass="form-control" value="#{movieRetriever.usrSelection}">
+                                <f:selectItems value="#{moviesTitles.movies}"/>
+                                <f:ajax event="change" execute="@this"/>
+                            </h:selectOneMenu>
+                            <br/>
+                            <h:commandButton class="btn btn-default" type="submit" value="Get Movie Info">
+                                <f:ajax execute="@form" event="click" render="mvTitle mvDuration mvNopasses"/>
+                            </h:commandButton>
+                        </p>
+                        <p>Grayscale includes full HTML, CSS, and custom JavaScript files along with LESS files for easy customization.</p>
+                        <p>
+                            <ui:fragment rendered="#{movieRetriever.movieFound}">
+                                <div class="panel panel-default">
+                                    <!-- Default panel contents -->
+                                    <div class="panel-heading"><h:outputText id="mvTitle">#{movieRetriever.usrSelection}</h:outputText></div>
+                                    <div class="panel-body">
+                                        <p><h:outputText id="mvNopasses">#{movieRetriever.movie.noPasses}</h:outputText></p>
+                                    </div>
+                                    <!-- List group -->
+                                    <ul class="list-group">
+                                        <li class="list-group-item"><em>Duration:</em> <h:outputText id="mvDuration">#{movieRetriever.movie.noPasses}</h:outputText></li>
+                                        <li class="list-group-item">Dapibus ac facilisis in</li>
+                                        <li class="list-group-item">Morbi leo risus</li>
+                                        <li class="list-group-item">Porta ac consectetur ac</li>
+                                        <li class="list-group-item">Vestibulum at eros</li>
+                                    </ul>
+                                </div>
+                            </ui:fragment>
+                        </p>
+                    </h:form>
+                </div>
+            </div>
+        </section>
+        <!-- Download Section -->
+        <section id="download" class="content-section text-center">
+            <div class="download-section">
+                <div class="container">
+                    <div class="col-lg-8 col-lg-offset-2">
+                        <h2>Download Grayscale</h2>
+                        <p>You can download Grayscale for free on the preview page at Start Bootstrap.</p>
+                        <a href="http://startbootstrap.com/template-overviews/grayscale/" class="btn btn-default btn-lg">Visit Download Page</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="container content-section text-center">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2">
+                    <h2>Contact Start Bootstrap</h2>
+                    <p>Feel free to email us to provide some feedback on our templates, give us suggestions for new templates and themes, or to just say hello!</p>
+                    <p><a href="mailto:feedback@startbootstrap.com">feedback@startbootstrap.com</a>
+                    </p>
+                    <ul class="list-inline banner-social-buttons">
+                        <li>
+                            <a href="https://twitter.com/SBootstrap" class="btn btn-default btn-lg"><i class="fa fa-twitter fa-fw"></i> <span class="network-name">Twitter</span></a>
+                        </li>
+                        <li>
+                            <a href="https://github.com/IronSummitMedia/startbootstrap" class="btn btn-default btn-lg"><i class="fa fa-github fa-fw"></i> <span class="network-name">Github</span></a>
+                        </li>
+                        <li>
+                            <a href="https://plus.google.com/+Startbootstrap/posts" class="btn btn-default btn-lg"><i class="fa fa-google-plus fa-fw"></i> <span class="network-name">Google+</span></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Map Section -->
+        <div id="map"></div>
+
+        <!-- Footer -->
+        <footer>
+            <div class="container text-center">
+                <p>Copyright  Your Website 2014</p>
+            </div>
+        </footer>
+        <!--jQuery-->
+        <h:outputScript library="js" name="jquery.js"/>
+
+        <!-- Bootstrap Core JavaScript -->
+        <h:outputScript library="js" name="bootstrap.min.js"/>
+
+        <!-- Plugin JavaScript -->
+        <h:outputScript library="js" name="jquery.easing.min.js"/>
+
+        <!-- Google Maps API Key - Use your own API key to enable the map feature. More information on the Google Maps API can be found at https://developers.google.com/maps/ -->
+        <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCRngKslUGJTlibkQ3FkfTxj3Xss1UlZDA&amp;sensor=false&amp;"></script>
+
+        <!-- Custom Theme JavaScript -->
+        <h:outputScript library="js" name="grayscale.js"/>
+
+        <h:outputScript library="js" name="knockout-3.3.0.js"/>
+        <h:outputScript library="js" name="knockout.mapping-latest.js"/>
+        <script type="text/javascript">
+            var viewModel = {
+                optionValues: ["Movie Title", "Specific Actor", "Specific Director"],
+                radioSelectedOptionValue: ko.observable("Specific Actor")
+            };
+            ko.applyBindings(viewModel);
+        </script>
+    </h:body>
+</html>
+

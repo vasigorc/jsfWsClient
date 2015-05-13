@@ -1,0 +1,72 @@
+<?xml version='1.0' encoding='UTF-8'?><!-- Published by JAX-WS RI at http://jax-ws.dev.java.net. RI's version is Metro/2.3 (tags/2.3-7528; 2013-04-29T19:34:10+0000) JAXWS-RI/2.2.8 JAXWS/2.2 svn-revision#unknown. --><xs:schema xmlns:tns="http://ws.ajaxandxml.mycompany.com/" xmlns:xs="http://www.w3.org/2001/XMLSchema" version="1.0" targetNamespace="http://ws.ajaxandxml.mycompany.com/">
+
+<xs:element name="IOException" type="tns:IOException"/>
+
+<xs:element name="findActorMovies" type="tns:findActorMovies"/>
+
+<xs:element name="findActorMoviesResponse" type="tns:findActorMoviesResponse"/>
+
+<xs:element name="findDirectorMovies" type="tns:findDirectorMovies"/>
+
+<xs:element name="findDirectorMoviesResponse" type="tns:findDirectorMoviesResponse"/>
+
+<xs:element name="findMovieInfo" type="tns:findMovieInfo"/>
+
+<xs:element name="findMovieInfoResponse" type="tns:findMovieInfoResponse"/>
+
+<xs:complexType name="findDirectorMovies">
+<xs:sequence>
+<xs:element name="directorName" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="findDirectorMoviesResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="IOException">
+<xs:sequence>
+<xs:element name="message" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="findMovieInfo">
+<xs:sequence>
+<xs:element name="title" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="findMovieInfoResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:movie" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="movie">
+<xs:sequence>
+<xs:element name="actors" type="xs:string" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+<xs:element name="directors" type="xs:string" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+<xs:element name="genre" type="xs:string" minOccurs="0"/>
+<xs:element name="noPasses" type="xs:boolean"/>
+<xs:element name="producers" type="xs:string" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+<xs:element name="rank" type="xs:string" minOccurs="0"/>
+<xs:element name="studios" type="xs:string" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+<xs:element name="title" type="xs:string" minOccurs="0"/>
+<xs:element name="writers" type="xs:string" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="findActorMovies">
+<xs:sequence>
+<xs:element name="actorName" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="findActorMoviesResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+</xs:sequence>
+</xs:complexType>
+</xs:schema>
