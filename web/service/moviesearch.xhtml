@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html   [
+    <!ENTITY nbsp "&#160;"> 
+    ]>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+    <ui:composition>
+        <ui:fragment rendered="#{service.movieCurrent}">
+            <h:form>
+                <p>
+                    <h:selectOneMenu id="usrSelection" style="width: 18em;" styleClass="form-control" value="#{movieRetriever.usrSelection}">
+                        <f:selectItems value="#{moviesTitles.movies}"/>
+                    </h:selectOneMenu>
+                    <br/>
+                    <p:commandButton id="submission" action="#{movieRetriever.findMovie()}" class="btn btn-default" type="submit" value="Get Movie Info">
+                        <f:ajax execute="@form" event="click" render="moviePanel"/>
+                    </p:commandButton>                        
+                </p>
+                <p></p>
+                <p>
+                    <h:panelGrid id="moviePanel" cellpadding="1px" columnClasses="italic" bgcolor="transparent" columns="2">
+                        <h:outputText styleClass="biggerCopy" id="mvTitle" value="#{movieRetriever.usrSelection}"/>
+                        <h:outputText value="#{movieRetriever.movie.getReleased()}"/>
+
+                        Genre
+                        <h:outputText value="#{movieRetriever.movie.getGenre()}"/>
+
+                        Duration
+                        <h:outputText value="#{movieRetriever.movie.duration}"/>
+
+                        Rank
+                        <h:outputText value="#{movieRetriever.movie.rank}"/>
+
+                        Show Times
+                        <h:panelGroup>
+                            <ui:repeat var="showtime" varStatus="status" value="#{movieRetriever.movie.showingon}">
+                                #{showtime};&nbsp;
+                            </ui:repeat>
+                        </h:panelGroup>
+
+                        No Passes
+                        <h:outputText value="#{movieRetriever.movie.noPasses}"/>
+
+                        Actors
+                        <h:panelGroup>
+                            <ui:repeat var="actor" varStatus="status" value="#{movieRetriever.movie.actors}">
+                                #{actor};&nbsp;
+                            </ui:repeat>
+                        </h:panelGroup>
+
+                        Directors
+                        <h:panelGroup>
+                            <ui:repeat var="director" varStatus="status" value="#{movieRetriever.movie.directors}">
+                                #{director};&nbsp;
+                            </ui:repeat>
+                        </h:panelGroup>
+
+                        Producers
+                        <h:panelGroup>
+                            <ui:repeat var="producer" varStatus="status" value="#{movieRetriever.movie.producers}">
+                                #{producer};&nbsp;
+                            </ui:repeat>
+                        </h:panelGroup>
+
+                        Writers
+                        <h:panelGroup>
+                            <ui:repeat var="writer" varStatus="status" value="#{movieRetriever.movie.writers}">
+                                #{writer};&nbsp;
+                            </ui:repeat>
+                        </h:panelGroup>
+
+                        Studios
+                        <h:panelGroup>
+                            <ui:repeat var="studio" varStatus="status" value="#{movieRetriever.movie.studios}">
+                                #{studio};&nbsp;
+                            </ui:repeat>
+                        </h:panelGroup>
+                    </h:panelGrid>
+                </p>
+            </h:form>
+        </ui:fragment>
+    </ui:composition>
+</html>

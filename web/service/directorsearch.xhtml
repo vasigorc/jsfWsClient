@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html [<!ENTITY nbsp "&#160;"> ]>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+    <ui:composition>
+        <ui:fragment rendered="#{service.directorCurrent}">
+            <h:form>
+                <p>
+                    <p:inputText id="inputDirector" value="#{directorRetriever.selectedDirector}"/>
+                    <br/>
+                    <p:commandButton action="#{directorRetriever.listMovies()}" class="btn btn-default" type="submit" value="Find movies">
+                        <f:ajax immediate="true" execute="@form" event="click" render="directorsMovies"/>
+                    </p:commandButton>
+                </p>
+                <p></p>
+                <h:panelGrid columns="1" bgcolor="transparent" id="directorsMovies">
+                    <h:outputText styleClass="biggerCopy" value="#{directorRetriever.selectedDirector}"/>
+
+                    <h:panelGroup>
+                        <ui:repeat var="movie" varStatus="status" value="#{directorRetriever.directorMovies}">
+                            <h:outputText styleClass="biggerCopy" value="#{movie}"/>
+                            &nbsp;
+                        </ui:repeat>
+                    </h:panelGroup>
+                </h:panelGrid>
+            </h:form>
+        </ui:fragment>
+    </ui:composition>
+</html>

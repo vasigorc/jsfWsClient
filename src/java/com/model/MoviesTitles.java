@@ -18,7 +18,6 @@ import javax.enterprise.context.SessionScoped;
 public class MoviesTitles implements Serializable {
 
     private ArrayList<String> movies = new ArrayList<>();
-
     /**
      * Creates a new instance of MoviesTitles
      */

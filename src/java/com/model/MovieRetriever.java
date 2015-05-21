@@ -4,30 +4,31 @@
  */
 package com.model;
 
-import java.io.IOException;
 import javax.inject.Named;
-import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
-import java.util.logging.FileHandler;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.faces.view.ViewScoped;
+import javax.xml.ws.WebServiceRef;
 
 /**
  *
  * @author vasigorc
  */
 @Named(value = "movieRetriever")
-@SessionScoped
+@ViewScoped
 public class MovieRetriever implements Serializable {
+    @WebServiceRef(wsdlLocation = "WEB-INF/wsdl/localhost_8080/ajaxandxml/MovieBillService.wsdl")
+    private MovieBillService service = new MovieBillService();
     private String usrSelection;
     private Movie movie;
-    private MovieBill ws;
-    private boolean movieFound = true;
+    private boolean movieFound;
 
     /**
      * Creates a new instance of MovieRetriever
      */
     public MovieRetriever() {
+        movieFound = false;
     }
 
     public String getUsrSelection() {
@@ -36,14 +37,10 @@ public class MovieRetriever implements Serializable {
 
     public void setUsrSelection(String usrSelection) {
         this.usrSelection = usrSelection;
+        findMovie();
     }
 
     public Movie getMovie() {
-        try {
-            this.movie = ws.findMovieInfo(usrSelection);
-        } catch (IOException_Exception ex) {
-            Logger.getLogger(MovieRetriever.class.getName()).log(Level.SEVERE, null, ex);
-        }
         return movie;
     }
 
@@ -52,11 +49,11 @@ public class MovieRetriever implements Serializable {
     }
 
     public void findMovie() {
+        movieFound = true;
         try {
-            this.movie = ws.findMovieInfo(usrSelection);
+            this.movie = findMovieInfo(usrSelection);
         } catch (IOException_Exception ex) {
-            Logger.getLogger(MovieRetriever.class
-                    .getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(MovieRetriever.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -67,4 +64,21 @@ public class MovieRetriever implements Serializable {
     public void setMovieFound(boolean movieFound) {
         this.movieFound = movieFound;
     }
+
+    private Movie findMovieInfo(java.lang.String title) throws IOException_Exception {
+        // Note that the injected javax.xml.ws.Service reference as well as port objects are not thread safe.
+        // If the calling of port operations may lead to race condition some synchronization is required.
+        com.model.MovieBill port = service.getMovieBillPort();
+        return port.findMovieInfo(title);
+    }
+    
+//    public static void main(String[] args){
+//        MovieRetriever mr = new MovieRetriever();
+//        try {
+//            mr.movie = mr.findMovieInfo("Click");
+//            System.out.println(mr.movie.getReleased());
+//        } catch (IOException_Exception ex) {
+//            Logger.getLogger(MovieRetriever.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+//    }
 }
