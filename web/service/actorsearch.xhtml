@@ -14,9 +14,9 @@ and open the template in the editor.
         <ui:fragment rendered="#{service.actorCurrent}">
             <h:form>
                 <p>
-                    <p:inputText id="actorInput" value="#{actorRetriever.selectedActor}"/>
+                    <p:inputText styleClass="form-control2" id="actorInput" value="#{actorRetriever.selectedActor}"/>
                     <br/>
-                    <p:commandButton action="#{actorRetriever.listMovies()}" class="btn btn-default" type="submit" value="Find movies">
+                    <p:commandButton class="btn btn-default" type="submit" value="Find movies">
                         <f:ajax immediate="true" execute="@form" event="click" render="actorsMovies"/>
                     </p:commandButton>
                 </p>

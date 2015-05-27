@@ -33,6 +33,22 @@ public class ServicePicker implements Serializable {
 
     public void setChoice(String choice) {
         this.choice = choice;
+        /*
+        Change the index value
+        */
+        switch (choice) {
+            case "Movie":
+                this.index = 3;
+                break;
+            case "Director":
+                this.index = 2;
+                break;
+            case "Actor":
+                this.index = 1;
+                break;
+            default:
+                break;
+        }
     }
 
     //methods for determining the current tab
@@ -46,24 +62,5 @@ public class ServicePicker implements Serializable {
 
     public boolean isMovieCurrent() {
         return index == 3;
-    }
-
-    //change the index' value
-    public void tabPicker(ValueChangeEvent event) {
-
-        String newChoice = (String) event.getNewValue();
-        switch (newChoice) {
-            case "Movie":
-                this.index = 3;
-                break;
-            case "Director":
-                this.index = 2;
-                break;
-            case "Actor":
-                this.index = 1;
-                break;
-            default:
-                break;
-        }
     }
 }

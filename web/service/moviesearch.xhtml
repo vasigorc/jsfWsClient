@@ -15,8 +15,8 @@ and open the template in the editor.
     <ui:composition>
         <ui:fragment rendered="#{service.movieCurrent}">
             <h:form>
-                <p>
-                    <h:selectOneMenu id="usrSelection" style="width: 18em;" styleClass="form-control" value="#{movieRetriever.usrSelection}">
+                <p> 
+                    <h:selectOneMenu id="usrSelection" style="width: 18em; " styleClass="form-control" value="#{movieRetriever.usrSelection}">
                         <f:selectItems value="#{moviesTitles.movies}"/>
                     </h:selectOneMenu>
                     <br/>

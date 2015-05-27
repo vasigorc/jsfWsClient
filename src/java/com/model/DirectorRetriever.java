@@ -41,6 +41,7 @@ public class DirectorRetriever implements Serializable{
 
     public void setSelectedDirector(String selectedDirector) {
         this.selectedDirector = selectedDirector;
+        listMovies();
     }
     
     public void listMovies() {

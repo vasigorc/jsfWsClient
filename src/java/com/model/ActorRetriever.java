@@ -19,7 +19,7 @@ import javax.xml.ws.WebServiceRef;
  */
 @Named(value = "actorRetriever")
 @ViewScoped
-public class ActorRetriever implements Serializable {
+public class ActorRetriever implements Serializable{
 
     @WebServiceRef(wsdlLocation = "WEB-INF/wsdl/localhost_8080/ajaxandxml/MovieBillService.wsdl")
     private MovieBillService service = new MovieBillService();
@@ -42,6 +42,7 @@ public class ActorRetriever implements Serializable {
 
     public void setSelectedActor(String selectedActor) {
         this.selectedActor = selectedActor;
+        listMovies();
     }
 
     public void listMovies() {

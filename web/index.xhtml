@@ -83,9 +83,9 @@
                         <h2>What you're looking for?</h2>
                         <h:form>
                             <p>
-                                <h:selectOneRadio value="#{service.choice}" layout="lineDirection"
-                                                  valueChangeListener="#{service.tabPicker}" onclick="submit()">
+                                <h:selectOneRadio value="#{service.choice}" layout="lineDirection">
                                     <f:selectItems value="#{radio.radioChoices}"/>
+                                    <f:ajax event="change" execute="@this" render="@form"/>
                                 </h:selectOneRadio>
                             </p>
                             <ui:include src="service/moviesearch.xhtml" id="movieTab"/>
