@@ -4,14 +4,20 @@
 <xsd:import namespace="http://ws.ajaxandxml.mycompany.com/" schemaLocation="http://localhost:8080/ajaxandxml/MovieBillService?xsd=1"/>
 </xsd:schema>
 </types>
+<message name="findDirectorMovies">
+<part name="parameters" element="tns:findDirectorMovies"/>
+</message>
+<message name="findDirectorMoviesResponse">
+<part name="parameters" element="tns:findDirectorMoviesResponse"/>
+</message>
+<message name="IOException">
+<part name="fault" element="tns:IOException"/>
+</message>
 <message name="findMovieInfo">
 <part name="parameters" element="tns:findMovieInfo"/>
 </message>
 <message name="findMovieInfoResponse">
 <part name="parameters" element="tns:findMovieInfoResponse"/>
-</message>
-<message name="IOException">
-<part name="fault" element="tns:IOException"/>
 </message>
 <message name="findActorMovies">
 <part name="parameters" element="tns:findActorMovies"/>
@@ -19,13 +25,12 @@
 <message name="findActorMoviesResponse">
 <part name="parameters" element="tns:findActorMoviesResponse"/>
 </message>
-<message name="findDirectorMovies">
-<part name="parameters" element="tns:findDirectorMovies"/>
-</message>
-<message name="findDirectorMoviesResponse">
-<part name="parameters" element="tns:findDirectorMoviesResponse"/>
-</message>
 <portType name="MovieBill">
+<operation name="findDirectorMovies">
+<input wsam:Action="http://ws.ajaxandxml.mycompany.com/MovieBill/findDirectorMoviesRequest" message="tns:findDirectorMovies"/>
+<output wsam:Action="http://ws.ajaxandxml.mycompany.com/MovieBill/findDirectorMoviesResponse" message="tns:findDirectorMoviesResponse"/>
+<fault message="tns:IOException" name="IOException" wsam:Action="http://ws.ajaxandxml.mycompany.com/MovieBill/findDirectorMovies/Fault/IOException"/>
+</operation>
 <operation name="findMovieInfo">
 <input wsam:Action="http://ws.ajaxandxml.mycompany.com/MovieBill/findMovieInfoRequest" message="tns:findMovieInfo"/>
 <output wsam:Action="http://ws.ajaxandxml.mycompany.com/MovieBill/findMovieInfoResponse" message="tns:findMovieInfoResponse"/>
@@ -36,14 +41,21 @@
 <output wsam:Action="http://ws.ajaxandxml.mycompany.com/MovieBill/findActorMoviesResponse" message="tns:findActorMoviesResponse"/>
 <fault message="tns:IOException" name="IOException" wsam:Action="http://ws.ajaxandxml.mycompany.com/MovieBill/findActorMovies/Fault/IOException"/>
 </operation>
-<operation name="findDirectorMovies">
-<input wsam:Action="http://ws.ajaxandxml.mycompany.com/MovieBill/findDirectorMoviesRequest" message="tns:findDirectorMovies"/>
-<output wsam:Action="http://ws.ajaxandxml.mycompany.com/MovieBill/findDirectorMoviesResponse" message="tns:findDirectorMoviesResponse"/>
-<fault message="tns:IOException" name="IOException" wsam:Action="http://ws.ajaxandxml.mycompany.com/MovieBill/findDirectorMovies/Fault/IOException"/>
-</operation>
 </portType>
 <binding name="MovieBillPortBinding" type="tns:MovieBill">
 <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+<operation name="findDirectorMovies">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+<fault name="IOException">
+<soap:fault name="IOException" use="literal"/>
+</fault>
+</operation>
 <operation name="findMovieInfo">
 <soap:operation soapAction=""/>
 <input>
@@ -57,18 +69,6 @@
 </fault>
 </operation>
 <operation name="findActorMovies">
-<soap:operation soapAction=""/>
-<input>
-<soap:body use="literal"/>
-</input>
-<output>
-<soap:body use="literal"/>
-</output>
-<fault name="IOException">
-<soap:fault name="IOException" use="literal"/>
-</fault>
-</operation>
-<operation name="findDirectorMovies">
 <soap:operation soapAction=""/>
 <input>
 <soap:body use="literal"/>

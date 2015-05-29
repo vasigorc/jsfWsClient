@@ -51,18 +51,6 @@
 </xs:sequence>
 </xs:complexType>
 
-<xs:complexType name="findActorMovies">
-<xs:sequence>
-<xs:element name="actorName" type="xs:string" minOccurs="0"/>
-</xs:sequence>
-</xs:complexType>
-
-<xs:complexType name="findActorMoviesResponse">
-<xs:sequence>
-<xs:element name="return" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
-</xs:sequence>
-</xs:complexType>
-
 <xs:complexType name="findDirectorMovies">
 <xs:sequence>
 <xs:element name="directorName" type="xs:string" minOccurs="0"/>
@@ -70,6 +58,18 @@
 </xs:complexType>
 
 <xs:complexType name="findDirectorMoviesResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="findActorMovies">
+<xs:sequence>
+<xs:element name="actorName" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="findActorMoviesResponse">
 <xs:sequence>
 <xs:element name="return" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
 </xs:sequence>
