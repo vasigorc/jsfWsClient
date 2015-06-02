@@ -5,7 +5,7 @@
  */
 package com.model.restbeans;
 
-import com.model.rest.MovieJerseyClient;
+import com.model.rest.MoviesJerseyClient;
 import java.io.Serializable;
 import javax.inject.Named;
 import javax.faces.view.ViewScoped;
@@ -20,7 +20,7 @@ public class RMovieBean implements Serializable {
 
     private String usrSelection;
     private Movie movie;
-    private MovieJerseyClient mjc;
+    private final MoviesJerseyClient mjc = new MoviesJerseyClient();
 
     /**
      * Creates a new instance of RMovieBean
@@ -34,6 +34,7 @@ public class RMovieBean implements Serializable {
 
     public void setUsrSelection(String usrSelection) {
         this.usrSelection = usrSelection;
+        findMovie();
     }
 
     public Movie getMovie() {
@@ -45,15 +46,14 @@ public class RMovieBean implements Serializable {
     }
 
     public void findMovie() {
-        this.movie = mjc.getMovieInfo(Movie.class, usrSelection);
-
+        this.movie=mjc.getMovieInfo(com.model.restbeans.Movie.class, usrSelection);
     }
 
-    public static void main(String[] args) {
-        RMovieBean mr = new RMovieBean();
-        mr.setUsrSelection("Click");
-        mr.findMovie();
-        System.out.println(mr.movie.getReleased());
-
-    }
+//    public static void main(String[] args) {
+//        RMovieBean mr = new RMovieBean();
+//        mr.setUsrSelection("Click");
+//        mr.findMovie();
+//        System.out.println(mr.movie.getTitle()+": "+mr.movie.getReleased());
+//
+//    }
 }

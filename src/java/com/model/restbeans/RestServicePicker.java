@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.model;
+package com.model.restbeans;
 
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
@@ -13,17 +13,17 @@ import java.io.Serializable;
  *
  * @author vasigorc
  */
-@Named(value = "service")
+@Named(value = "restService")
 @SessionScoped
-public class ServicePicker implements Serializable {
+public class RestServicePicker implements Serializable {
 
     private String choice = "Movie";
     private int index = 3;
 
     /**
-     * Creates a new instance of ServicePicker
+     * Creates a new instance of RestServicePicker
      */
-    public ServicePicker() {
+    public RestServicePicker() {
     }
 
     public String getChoice() {
@@ -33,8 +33,8 @@ public class ServicePicker implements Serializable {
     public void setChoice(String choice) {
         this.choice = choice;
         /*
-        Change the index value
-        */
+         Change the index value
+         */
         switch (choice) {
             case "Movie":
                 this.index = 3;
@@ -49,7 +49,7 @@ public class ServicePicker implements Serializable {
                 break;
         }
     }
-
+    
     //methods for determining the current tab
     public boolean isActorCurrent() {
         return index == 1;

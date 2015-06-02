@@ -49,7 +49,7 @@
                                 <a class="page-scroll" href="#about">SOAP</a>
                             </li>
                             <li>
-                                <a class="page-scroll" href="#download">Download</a>
+                                <a class="page-scroll" href="#download">REST</a>
                             </li>
                             <li>
                                 <a class="page-scroll" href="#contact">Contact coder</a>
@@ -100,9 +100,20 @@
                 <div class="download-section">
                     <div class="container">
                         <div class="col-lg-8 col-lg-offset-2">
-                            <h2>Download Grayscale</h2>
-                            <p>You can download Grayscale for free on the preview page at Start Bootstrap.</p>
-                            <a href="http://startbootstrap.com/template-overviews/grayscale/" class="btn btn-default btn-lg">Visit Download Page</a>
+                            <h2>Now try it with REST</h2>
+                            <h:form>
+                                <p>
+                                    <h:selectOneRadio value="#{restService.choice}" layout="lineDirection">
+                                        <f:selectItems value="#{radio.radioChoices}"/>
+                                        <f:ajax event="change" execute="@this" render="@form"/>
+                                    </h:selectOneRadio>
+                                </p>
+                                <ui:include src="restservice/restmovie.xhtml" id="rMovieTab"/>
+                                <ui:include src="restservice/restactor.xhtml" id="rActorTab"/>
+                                <ui:include src="restservice/restdirector.xhtml" id="rDirectorTab"/>
+                            </h:form>
+<!--
+                            <a href="http://startbootstrap.com/template-overviews/grayscale/" class="btn btn-default btn-lg">Visit Download Page</a>-->
                         </div>
                     </div>
                 </div>
@@ -113,18 +124,18 @@
                 <div class="row">
                     <div class="col-lg-8 col-lg-offset-2">
                         <h2>Vasile Gorcinschi</h2>
-                        <p>Contactați-mă și vă voi răspunde, poate...</p>
+                        <p>I'll be glad to answer you</p>
                         <p><a href="mailto:vasigorc@yahoo.ca">vasigorc@yahoo.ca</a>
                         </p>
                         <ul class="list-inline banner-social-buttons">
                             <li>
-                                <a href="https://twitter.com/SBootstrap" class="btn btn-default btn-lg"><i class="fa fa-linkedin fa-fw"></i> <span class="network-name"></span></a>
+                                <a href="https://www.linkedin.com/pub/vasile-gorcinschi/82/148/654" class="btn btn-default btn-lg"><i class="fa fa-linkedin fa-fw"></i> <span class="network-name"></span></a>
                             </li>
                             <li>
-                                <a href="https://github.com/IronSummitMedia/startbootstrap" class="btn btn-default btn-lg"><i class="fa fa-github fa-fw"></i> <span class="network-name"></span></a>
+                                <a href="https://github.com/vasigorc" class="btn btn-default btn-lg"><i class="fa fa-github fa-fw"></i> <span class="network-name"></span></a>
                             </li>
                             <li>
-                                <a href="https://plus.google.com/+Startbootstrap/posts" class="btn btn-default btn-lg"><i class="fa fa-facebook fa-fw"></i> <span class="network-name"></span></a>
+                                <a href="https://www.facebook.com/v.gorchinski" class="btn btn-default btn-lg"><i class="fa fa-facebook fa-fw"></i> <span class="network-name"></span></a>
                             </li>
                         </ul>
                     </div>
@@ -154,14 +165,6 @@
 
             <!-- Custom Theme JavaScript -->
             <h:outputScript library="js" name="grayscale.js"/>
-            <script type="text/javascript">
-//                jQuery.noConflict();
-//                jQuery(function (va) {
-//                    va("#submission").click(function(){
-//                       va("#moviePanel").show();
-//                    });
-//                });
-            </script>
         </h:body>
     </html>
 

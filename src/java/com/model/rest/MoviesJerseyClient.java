@@ -10,10 +10,10 @@ import javax.ws.rs.client.Client;
 import javax.ws.rs.client.WebTarget;
 
 /**
- * Jersey REST client generated for REST resource:RestfulMovies [/services]<br>
+ * Jersey REST client generated for REST resource:RestMovies [services]<br>
  * USAGE:
  * <pre>
- *        MovieJerseyClient client = new MovieJerseyClient();
+ *        MoviesJerseyClient client = new MoviesJerseyClient();
  *        Object response = client.XXX(...);
  *        // do whatever with response
  *        client.close();
@@ -21,12 +21,12 @@ import javax.ws.rs.client.WebTarget;
  *
  * @author vasigorc
  */
-public class MovieJerseyClient {
+public class MoviesJerseyClient {
     private WebTarget webTarget;
     private Client client;
-    private static final String BASE_URI = "http://localhost:8080/ajaxandxml/webresources";
+    private static final String BASE_URI = "http://localhost:8080/RestfulOne/webresources";
 
-    public MovieJerseyClient() {
+    public MoviesJerseyClient() {
         client = javax.ws.rs.client.ClientBuilder.newClient();
         webTarget = client.target(BASE_URI).path("services");
     }
@@ -37,6 +37,7 @@ public class MovieJerseyClient {
         return resource.request(javax.ws.rs.core.MediaType.APPLICATION_XML).get(responseType);
     }
 
+    //param was: GenericType<T> superType, String name
     public <T> T getActorMovies(Class<T> responseType, String name) throws ClientErrorException {
         WebTarget resource = webTarget;
         resource = resource.path(java.text.MessageFormat.format("actors/{0}", new Object[]{name}));

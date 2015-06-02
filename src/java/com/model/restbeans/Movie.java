@@ -7,6 +7,7 @@ import java.util.List;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
 
@@ -40,41 +41,44 @@ import javax.xml.bind.annotation.XmlType;
  * 
  * 
  */
-@XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "movie", propOrder = {
-    "duration",
-    "showingon",
-    "released",
-    "title",
-    "genre",
-    "rank",
-    "noPasses",
-    "actors",
-    "directors",
-    "producers",
-    "writers",
-    "studios"
-})
+//@XmlAccessorType(XmlAccessType.FIELD)
+@XmlRootElement(name="movie")
 public class Movie {
 
     protected String duration;
-    @XmlElement(nillable = true)
     protected List<String> showingon;
     protected String released;
     protected String title;
     protected String genre;
     protected String rank;
     protected boolean noPasses;
-    @XmlElement(nillable = true)
     protected List<String> actors;
-    @XmlElement(nillable = true)
     protected List<String> directors;
-    @XmlElement(nillable = true)
     protected List<String> producers;
-    @XmlElement(nillable = true)
     protected List<String> writers;
-    @XmlElement(nillable = true)
     protected List<String> studios;
+
+    public Movie() {
+        this("duration", new ArrayList<String>(), "released", "title", "genre", "rank", true, new ArrayList<String>(), new ArrayList<String>(), 
+                new ArrayList<String>(), new ArrayList<String>(), new ArrayList<String>());
+    }
+
+    public Movie(String duration, List<String> showingon, String released, String title, String genre, String rank, boolean noPasses, List<String> actors, List<String> directors, List<String> producers, List<String> writers, List<String> studios) {
+        this.duration = duration;
+        this.showingon = showingon;
+        this.released = released;
+        this.title = title;
+        this.genre = genre;
+        this.rank = rank;
+        this.noPasses = noPasses;
+        this.actors = actors;
+        this.directors = directors;
+        this.producers = producers;
+        this.writers = writers;
+        this.studios = studios;
+    }
+    
+    
 
     /**
      * Obtient la valeur de la propriété duration.
@@ -84,6 +88,9 @@ public class Movie {
      *     {@link String }
      *     
      */
+    
+    
+    @XmlElement(name="duration")
     public String getDuration() {
         return duration;
     }
@@ -122,6 +129,7 @@ public class Movie {
      * 
      * 
      */
+    @XmlElement(name="showingon")
     public List<String> getShowingon() {
         if (showingon == null) {
             showingon = new ArrayList<String>();
@@ -137,6 +145,7 @@ public class Movie {
      *     {@link String }
      *     
      */
+    @XmlElement(name="released")
     public String getReleased() {
         return released;
     }
@@ -161,6 +170,7 @@ public class Movie {
      *     {@link String }
      *     
      */
+    @XmlElement(name="title")
     public String getTitle() {
         return title;
     }
@@ -185,6 +195,7 @@ public class Movie {
      *     {@link String }
      *     
      */
+    @XmlElement(name="genre")
     public String getGenre() {
         return genre;
     }
@@ -209,6 +220,7 @@ public class Movie {
      *     {@link String }
      *     
      */
+    @XmlElement(name="rank")
     public String getRank() {
         return rank;
     }
@@ -229,6 +241,7 @@ public class Movie {
      * Obtient la valeur de la propriété noPasses.
      * 
      */
+    @XmlElement(name="nopasses")
     public boolean isNoPasses() {
         return noPasses;
     }
@@ -263,6 +276,7 @@ public class Movie {
      * 
      * 
      */
+    @XmlElement(name="actors")
     public List<String> getActors() {
         if (actors == null) {
             actors = new ArrayList<String>();
@@ -292,6 +306,7 @@ public class Movie {
      * 
      * 
      */
+    @XmlElement(name="directors")
     public List<String> getDirectors() {
         if (directors == null) {
             directors = new ArrayList<String>();
@@ -321,6 +336,7 @@ public class Movie {
      * 
      * 
      */
+    @XmlElement(name="producers")
     public List<String> getProducers() {
         if (producers == null) {
             producers = new ArrayList<String>();
@@ -350,6 +366,7 @@ public class Movie {
      * 
      * 
      */
+    @XmlElement(name="writers")
     public List<String> getWriters() {
         if (writers == null) {
             writers = new ArrayList<String>();
@@ -379,9 +396,10 @@ public class Movie {
      * 
      * 
      */
+    @XmlElement(name="studios")
     public List<String> getStudios() {
         if (studios == null) {
-            studios = new ArrayList<String>();
+            studios = new ArrayList<>();
         }
         return this.studios;
     }
